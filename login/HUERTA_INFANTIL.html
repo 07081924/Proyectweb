@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huerta Inteligente Infantil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/HUERTA.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Huerta Inteligente Infantil</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#fases">Fases del Proyecto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#seleccion">Selecciona tu Planta</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../login/login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../registro/signup.html">Registro</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="container mt-4">
+        <section id="inicio" class="text-center">
+            <h2>Bienvenidos</h2>
+            <p>Este proyecto busca que los niños participen mas en las activiadedes recreativas utilizandio la tecnologia   </p>
+            <img src="../IMG/FTHUERTA.jpg" class="img-fluid rounded shadow" alt="Imagen de la huerta inteligente">
+        </section>
+
+        <section id="fases" class="mt-5">
+            <h2 class="text-center">Fases del Proyecto</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>1° fase:</strong> Preparación del suelo y selección de semillas.</li>
+                <li class="list-group-item"><strong>2° fase:</strong> Instalación de sensores de humedad y luz.</li>
+                <li class="list-group-item"><strong>3° fase:</strong> Monitoreo del crecimiento de las plantas.</li>
+            </ul>
+        </section>
+
+        <section id="seleccion" class="mt-5">
+            <h2 class="text-center">Selecciona la planta que deseas sembrar</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <select id="plantSelector" class="form-select" onchange="mostrarPlanta()">
+                        <option value="">-- Selecciona una planta --</option>
+                        <option value="mango">Mango</option>
+                        <option value="guayaba">Guayaba</option>
+                        <option value="guanabana">Guanábana</option>
+                        <option value="limon">Limón</option>
+                        <option value="marañon">Marañón</option>
+                        <option value="nispero">Níspero</option>
+                        <option value="coco">Coco</option>
+                        <option value="naranja">Naranja</option>
+                        <option value="caimito">Caimito</option>
+                        <option value="aguacate">Aguacate</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-6 text-center">
+                    <div class="card" id="plantImage" style="display: none;">
+                        <img id="selectedPlantImg" class="card-img-top" src="" alt="Planta seleccionada">
+                        <div class="card-body">
+                            <h5 id="selectedPlantName" class="card-title"></h5>
+                            <p id="selectedPlantInfo" class="card-text"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center bg-light py-3 mt-5">
+        <p>&copy; 2025 Proyecto de Huerta Inteligente. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script para mostrar plantas -->
+    <script>
+        function mostrarPlanta() {
+            let plant = document.getElementById("plantSelector").value;
+
+            let plantImages = {
+                mango: "../IMG/FTMANGO.jpg",
+                guayaba: "../IMG/FTGUAYABA.jpeg",
+                guanabana: "../IMG/FTGUANABANA.jpg",
+                limon: "../IMG/FTLIMON.jpg",
+                marañon: "../IMG/FTMARAÑON.png",
+                nispero: "../IMG/FTNISPERO.jpg",
+                coco: "../IMG/FTCOCO.webp",
+                naranja: "../IMG/FTNARANJA.webp",
+                caimito: "../IMG/FTCAIMITO.jpg",
+                aguacate: "../IMG/FTAGUACATE.jpg"
+            };
+
+            let plantInfo = {
+                mango: "El mango es una fruta tropical dulce y rica en vitaminas A y C.",
+                guayaba: "La guayaba es una fruta con alto contenido de fibra y vitamina C.",
+                guanabana: "La guanábana es conocida por su pulpa blanca y su sabor dulce y ácido.",
+                limon: "El limón es una fruta cítrica rica en vitamina C y antioxidantes.",
+                marañon: "El marañón produce la semilla del anacardo y su fruta es jugosa.",
+                nispero: "El níspero es una fruta dulce con alto contenido de fibra.",
+                coco: "El coco es una fruta tropical rica en agua y aceite beneficioso.",
+                naranja: "La naranja es una fruta cítrica popular por su vitamina C.",
+                caimito: "El caimito es una fruta tropical con pulpa dulce y jugosa.",
+                aguacate: "El aguacate es una fruta con alto contenido de grasas saludables."
+            };
+
+            if (plant && plantImages[plant]) {
+                document.getElementById("selectedPlantImg").src = plantImages[plant];
+                document.getElementById("selectedPlantImg").alt = plant;
+                document.getElementById("selectedPlantName").innerText = plant.charAt(0).toUpperCase() + plant.slice(1);
+                document.getElementById("selectedPlantInfo").innerText = plantInfo[plant] || "Información no disponible.";
+                document.getElementById("plantImage").style.display = "block";
+            } else {
+                document.getElementById("plantImage").style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
